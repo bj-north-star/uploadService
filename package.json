@@ -2,7 +2,7 @@
   "name": "@bj-nsc/upload",
   "version": "1.0.1",
   "description": "oss统一上传服务",
-  "main": "index.js",
+  "main": "lib/index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "babel src/index.js --out-dir lib"

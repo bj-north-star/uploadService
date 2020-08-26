@@ -1,0 +1,28 @@
+{
+  "name": "@bj-nsc/upload",
+  "version": "1.0.1",
+  "description": "oss统一上传服务",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "babel src/index.js --out-dir lib"
+  },
+  "keywords": [
+    "nsc-upload"
+  ],
+  "author": "wuhan",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/bj-north-star/uploadService"
+  },
+  "license": "ISC",
+  "dependencies": {
+    "axios": "^0.20.0",
+    "query-string": "^6.13.1"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.10.5",
+    "@babel/core": "^7.11.4",
+    "@babel/preset-env": "^7.11.0"
+  }
+}

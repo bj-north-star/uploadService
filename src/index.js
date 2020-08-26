@@ -35,7 +35,6 @@ export default class UploadService {
         url = queryStr ? url + "?" + queryStr : url;
 
         const axiosConfig = {
-          responseType: "blob",
           headers: {
             "Content-Type": "multipart/form-data",
           },
@@ -48,7 +47,7 @@ export default class UploadService {
                 );
             const p = Math.round((progressEvent.loaded * 100) / totalLength);
 
-            if (totalLength !== null) {
+            if (totalLength !== null && typeof params.progress === "function") {
               params.progress(p);
             }
           },

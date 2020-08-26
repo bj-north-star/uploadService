@@ -6,7 +6,7 @@ export default class UploadService {
     this.globalConfig = config;
   }
 
-  multipartUpload(key, file, params) {
+  multipartUpload(key, file, params = {}) {
     return new Promise((resolve, reject) => {
       if (!(file instanceof Blob)) {
         return reject(Error("参数不是一个文件!"));
@@ -54,9 +54,14 @@ export default class UploadService {
           },
         };
 
-        axios.post(url, formData, axiosConfig).then((res) => {
-          resolve(res);
-        });
+        axios
+          .post(url, formData, axiosConfig)
+          .then((res) => {
+            resolve(res);
+          })
+          .catch((err) => {
+            reject(err);
+          });
       };
 
       fileReader.readAsArrayBuffer(file);

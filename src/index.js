@@ -25,12 +25,12 @@ export default class UploadService {
         const { serviceName, busiName, publicRead, apiPrefix } = params;
         const otherParams = {};
 
-        let url = `${defaultPrefix}/${basePath}`;
+        let url = `${defaultPrefix}${basePath}`;
         if (params.url) {
           url = params.url;
         } else {
           if (apiPrefix) {
-            url = `${apiPrefix}/${basePath}`;
+            url = `${apiPrefix}${basePath}`;
           } else {
             if (params.hasOwnProperty("apiPrefix") && !params.apiPrefix) {
               url = basePath;

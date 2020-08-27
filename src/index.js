@@ -1,6 +1,7 @@
 import axios from "axios";
 import queryString from "query-string";
 
+const xhr = axios.create();
 export default class UploadService {
   constructor(config = {}) {
     this.globalConfig = config;
@@ -34,11 +35,13 @@ export default class UploadService {
         const queryStr = queryString.stringify(otherParams);
         url = queryStr ? url + "?" + queryStr : url;
         const customHeaders = params.headers || {};
+        const timeout = params.timeout || this.globalConfig.timeout || 0;
         const axiosConfig = {
           headers: {
             "Content-Type": "multipart/form-data",
             ...customHeaders,
           },
+          timeout,
           onUploadProgress: function (progressEvent) {
             const totalLength = progressEvent.lengthComputable
               ? progressEvent.total
@@ -54,10 +57,10 @@ export default class UploadService {
           },
         };
 
-        axios
+        xhr
           .post(url, formData, axiosConfig)
           .then((res) => {
-            resolve(res);
+            resolve(res.data);
           })
           .catch((err) => {
             reject(err);

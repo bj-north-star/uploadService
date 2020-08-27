@@ -1,6 +1,6 @@
 {
   "name": "@bj-nsc/upload",
-  "version": "1.0.12",
+  "version": "1.0.13",
   "description": "oss统一上传服务",
   "main": "lib/index.js",
   "scripts": {

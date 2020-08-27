@@ -14,7 +14,7 @@ export default class UploadService {
       }
 
       const fileReader = new FileReader();
-
+      const _this = this;
       fileReader.onload = function () {
         const blob = new Blob([this.result], { type: file.type });
         const formData = new FormData();
@@ -35,7 +35,7 @@ export default class UploadService {
         const queryStr = queryString.stringify(otherParams);
         url = queryStr ? url + "?" + queryStr : url;
         const customHeaders = params.headers || {};
-        const timeout = params.timeout || this.globalConfig.timeout || 0;
+        const timeout = params.timeout || _this.globalConfig.timeout || 0;
         const axiosConfig = {
           headers: {
             "Content-Type": "multipart/form-data",

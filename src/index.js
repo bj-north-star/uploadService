@@ -20,9 +20,23 @@ export default class UploadService {
         const formData = new FormData();
         formData.append("file", blob, file.name);
 
-        let url = params.url || "/files/file/upload";
-        const { serviceName, busiName } = params;
+        const basePath = "/files/file/upload";
+        const defaultPrefix = "/api";
+        const { serviceName, busiName, publicRead, apiPrefix } = params;
         const otherParams = {};
+
+        let url = `${defaultPrefix}/${basePath}`;
+        if (params.url) {
+          url = params.url;
+        } else {
+          if (apiPrefix) {
+            url = `${apiPrefix}/${basePath}`;
+          } else {
+            if (params.hasOwnProperty("apiPrefix") && !params.apiPrefix) {
+              url = basePath;
+            }
+          }
+        }
 
         if (serviceName) {
           otherParams.serviceName = serviceName;
@@ -30,6 +44,10 @@ export default class UploadService {
 
         if (busiName) {
           otherParams.busiName = busiName;
+        }
+
+        if (publicRead) {
+          otherParams.publicRead = publicRead;
         }
 
         const queryStr = queryString.stringify(otherParams);

@@ -33,10 +33,11 @@ export default class UploadService {
 
         const queryStr = queryString.stringify(otherParams);
         url = queryStr ? url + "?" + queryStr : url;
-
+        const customHeaders = params.headers || {};
         const axiosConfig = {
           headers: {
             "Content-Type": "multipart/form-data",
+            ...customHeaders,
           },
           onUploadProgress: function (progressEvent) {
             const totalLength = progressEvent.lengthComputable
